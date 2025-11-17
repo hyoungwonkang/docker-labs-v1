@@ -7,8 +7,16 @@ export default function Home() {
   const [greeting, setGreeting] = useState("");
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/greeting?lang=${lang}`)
-      .then((res) => res.text())
+    // 정적 export에서는 runtime에 API URL을 결정
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+    
+    fetch(`${apiUrl}/greeting?lang=${lang}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.text();
+      })
       .then(setGreeting)
       .catch(() => setGreeting("API 오류"));
   }, [lang]);

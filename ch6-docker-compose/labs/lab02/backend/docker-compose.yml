@@ -1,19 +1,14 @@
 services:
   frontend:
-    build: 
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: hwplus/my-nextjs-nginx:latest
     ports:
       - "3001:80"
     networks:
       - web
     depends_on:
       - backend
-
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: hwplus/hello-world-v1:latest
     ports:
       - "8080:8080"
     networks:
@@ -21,16 +16,11 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/testdb
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=1234
 
   db:
     image: mysql:8.4.7
     environment:
       - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=testdb
     ports:
       - "3306:3306"
     volumes:

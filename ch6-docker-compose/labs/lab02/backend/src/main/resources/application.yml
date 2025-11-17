@@ -1,8 +1,9 @@
 spring:
   datasource:
-    url:
-    username: hellouser
-    password: hellouser123
+    url: jdbc:mysql://db:3306/mysql
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     show-sql: true
