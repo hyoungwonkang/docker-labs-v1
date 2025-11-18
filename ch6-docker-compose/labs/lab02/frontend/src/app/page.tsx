@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 export default function Home() {
-  const [lang, setLang] = useState("kr");
+  const [lang, setLang] = useState("ko");
   const [greeting, setGreeting] = useState("");
 
   useEffect(() => {
@@ -25,9 +25,9 @@ export default function Home() {
     <main style={{ padding: 40 }}>
       <h1>Hello World</h1>
       <select value={lang} onChange={(e) => setLang(e.target.value)}>
-        <option value="kr">한국어</option>
+        <option value="ko">한국어</option>
         <option value="en">English</option>
-        <option value="jp">日本語</option>
+        <option value="ja">日本語</option>
       </select>
       <div style={{ marginTop: 24, fontSize: 32 }}>{greeting}</div>
     </main>
